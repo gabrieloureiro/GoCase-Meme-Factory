@@ -322,7 +322,7 @@ class _HomeState extends State<HomeScreen> {
                               ),
                             ),
                             onPressed: () { 
-                              if((_controllerUp.text).length<=95 && (_controllerDown.text).length<=95){
+                              if((_controllerUp.text).length<=100 && (_controllerDown.text).length<=100){
                                 //_screenshot();
                               } else {
                                 showDialog(
@@ -330,7 +330,7 @@ class _HomeState extends State<HomeScreen> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       title: Text("Ops! You exceded the limit of characteres"),
-                                      content: Text("The limit of characteres are 95. Please erase some letters."),
+                                      content: Text("The limit of characteres are 100 in each Input Field. Please erase some letters."),
                                       titleTextStyle: TextStyle(
                                         color : Color(0xffef89bf),
                                         fontSize: 17,
