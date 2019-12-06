@@ -3,7 +3,6 @@ import 'package:gcm_factory/size_config.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:screenshot/screenshot.dart';
 import 'dart:async';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +42,6 @@ class _HomeState extends State<HomeScreen> {
 
   TextEditingController _controllerUp = TextEditingController();
   TextEditingController _controllerDown = TextEditingController();
-  ScreenshotController screenshotController = ScreenshotController(); 
   File _image;
 
 
@@ -101,6 +99,7 @@ class _HomeState extends State<HomeScreen> {
                         titleTextStyle: TextStyle(
                           color : Colors.pinkAccent,
                           fontSize: 20,
+                          fontFamily: 'Bebas Neue',
                           fontWeight: FontWeight.bold,
                         ),
                         content: SingleChildScrollView(
@@ -131,9 +130,10 @@ class _HomeState extends State<HomeScreen> {
                         actions: <Widget>[
                           FlatButton(
                             child: Text(
-                              "FECHAR",
+                              "Close",
                               style: TextStyle(
                                 color: Colors.grey,
+                                fontFamily: 'Bebas Neue',
                                 fontWeight: FontWeight.bold,
                               ),
                               ),
@@ -161,35 +161,50 @@ class _HomeState extends State<HomeScreen> {
 
   Widget _body(){
     return Stack(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         children: <Widget>[
           Container(
             child: SingleChildScrollView(
               physics: AlwaysScrollableScrollPhysics(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    height: SizeConfig.blockSizeVertical*1,
-                  ),
                   _image == null
-                    ? Container()
+                    ? Text(" SELECT A IMAGE TO CREATE A MEME ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Bebas Neue',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          backgroundColor: Colors.black54
+                        ),
+                      )
                       : Stack(
+                        alignment: Alignment.topCenter,
                           children: <Widget>[ 
                             Image.file(_image,
-                              width: SizeConfig.blockSizeHorizontal*115,
-                              height: SizeConfig.blockSizeVertical*57.5,
+                              alignment: Alignment.topCenter,
+                              width: SizeConfig.screenWidth,
+                              height: SizeConfig.screenHeight,
                             ),
                             _memeTextUp(),
-                            _memeTextDown()
+                            _memeTextDown(),
+                            Padding(
+                              padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*87.5),
+                              child:Text(" GOCASE MEME FACTORY ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Bebas Neue',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  backgroundColor: Colors.black54
+                                ),
+                              )
+                            ),
                           ],
                         ),
-                  SizedBox(
-                    height: SizeConfig.blockSizeVertical*1.5,
-                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       RaisedButton(
                         color: Colors.black54,
@@ -199,6 +214,7 @@ class _HomeState extends State<HomeScreen> {
                         child: Text("Gallery",
                           style: TextStyle(
                             fontSize: 15,
+                            fontFamily: 'Bebas Neue',
                             fontWeight: FontWeight.bold
                           ),
                         ),
@@ -212,6 +228,7 @@ class _HomeState extends State<HomeScreen> {
                         child: Text("Camera",
                           style: TextStyle(
                             fontSize: 15,
+                            fontFamily: 'Bebas Neue',
                             fontWeight: FontWeight.bold
                           ),
                         ),
@@ -286,8 +303,7 @@ class _HomeState extends State<HomeScreen> {
                       SizedBox(
                         height: SizeConfig.blockSizeVertical*1.5,
                       ),
-                      Row(
-                        
+                      Row(                       
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[ 
                           RaisedButton(
@@ -295,16 +311,15 @@ class _HomeState extends State<HomeScreen> {
                             textColor: Colors.white,
                             splashColor: Colors.pinkAccent,
                             hoverColor: Colors.pinkAccent,
-                            child: Text("Generate",
+                            child: Text("Download",
                               style: TextStyle(
                                 fontSize: 15,
+                                fontFamily: 'Bebas Neue',
                                 fontWeight: FontWeight.bold
                               ),
                             ),
                             onPressed: () { 
-                              if((_controllerUp.text).length<=31 && (_controllerDown.text).length<=31){
-                                //_memeTextUp();
-                                //_memeTextDown();
+                              if((_controllerUp.text).length<=95 && (_controllerDown.text).length<=95){
                                 //_screenshot();
                               } else {
                                 showDialog(
@@ -312,7 +327,7 @@ class _HomeState extends State<HomeScreen> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       title: Text("Ops! You exceded the limit of characteres"),
-                                      content: Text("The limit of characteres are 31. Please erase some letters."),
+                                      content: Text("The limit of characteres are 95. Please erase some letters."),
                                       titleTextStyle: TextStyle(
                                         color : Color(0xffef89bf),
                                         fontSize: 17,
@@ -367,7 +382,7 @@ class _HomeState extends State<HomeScreen> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*54),
+          padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*71.5),
           child:Center(
             child: Text(_controllerDown.text,
               style: TextStyle(
