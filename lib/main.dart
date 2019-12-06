@@ -7,8 +7,6 @@ import 'package:screenshot/screenshot.dart';
 import 'dart:async';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-// import 'dart:typed_data';
-// import 'dart:ui' as ui;
 import 'dart:io';
 
 void main() => runApp(Home());
@@ -47,7 +45,6 @@ class _HomeState extends State<HomeScreen> {
   TextEditingController _controllerDown = TextEditingController();
   ScreenshotController screenshotController = ScreenshotController(); 
   File _image;
-  static GlobalKey screen = GlobalKey();
 
 
   Future _getImage(bool ofCamera) async {
@@ -68,17 +65,6 @@ class _HomeState extends State<HomeScreen> {
     });
 
   }
-
-  // _screenshot() async{
-  //   RenderRepaintBoundary boundary = screen.currentContext.findRenderObject();
-  //   ui.Image image = await boundary.toImage();
-  //   ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-
-  //   // var filepath = await ImagePicker.saveFile(
-  //   //   fileData: byteData.buffer.asUint8List()
-  //   // );
-
-  // }  
 
   //WIDGETS
 
@@ -177,14 +163,6 @@ class _HomeState extends State<HomeScreen> {
     return Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          RepaintBoundary(
-            key: screen,
-            child: Container(
-              width: SizeConfig.blockSizeHorizontal*115,
-              height: SizeConfig.blockSizeVertical*57.5,
-              color: Colors.transparent,             
-            ),
-          ),
           Container(
             child: SingleChildScrollView(
               physics: AlwaysScrollableScrollPhysics(),
@@ -325,8 +303,8 @@ class _HomeState extends State<HomeScreen> {
                             ),
                             onPressed: () { 
                               if((_controllerUp.text).length<=31 && (_controllerDown.text).length<=31){
-                                _memeTextUp();
-                                _memeTextDown();
+                                //_memeTextUp();
+                                //_memeTextDown();
                                 //_screenshot();
                               } else {
                                 showDialog(
