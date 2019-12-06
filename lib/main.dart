@@ -170,14 +170,17 @@ class _HomeState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   _image == null
-                    ? Text(" SELECT A IMAGE TO CREATE A MEME ",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Bebas Neue',
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          backgroundColor: Colors.black54
-                        ),
+                    ? Padding(
+                        padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*30),
+                        child:Text(" SELECT A IMAGE TO CREATE A MEME ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Bebas Neue',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            backgroundColor: Colors.black54
+                          ),
+                        )
                       )
                       : Stack(
                         alignment: Alignment.topCenter,
