@@ -185,27 +185,48 @@ class _HomeState extends State<HomeScreen> {
                       : Stack(
                         alignment: Alignment.topCenter,
                           children: <Widget>[ 
-                            Image.file(_image,
-                              alignment: Alignment.topCenter,
-                              width: SizeConfig.screenWidth,
-                              height: SizeConfig.screenHeight,
-                            ),
-                            _memeTextUp(),
-                            _memeTextDown(),
-                            Padding(
-                              padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*87.5),
-                              child:Text(" GOCASE MEME FACTORY ",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'Bebas Neue',
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  backgroundColor: Colors.black54
-                                ),
-                              )
+                            Card(
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: <Widget>[
+                                  _memeTextDown(),
+                                  Image.file(_image,),
+                                  _memeTextUp(),
+                                ],
+                              ),
                             ),
                           ],
                         ),
+                            // Padding(
+                            //   padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*1),
+                            //   child:Text(" ROLL DOWN TO CREATE A MEME ",
+                            //     style: TextStyle(
+                            //       fontSize: 20,
+                            //       fontFamily: 'Bebas Neue',
+                            //       fontWeight: FontWeight.bold,
+                            //       color: Colors.black87.withOpacity(0.6),
+                            //     ),
+                            //   )
+                            // ),
+                            // Padding(
+                            //   padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*7),
+                            //   child:Image.asset("images/logogc.png",
+                            //     color: Colors.pinkAccent.shade700,
+                            //   )                        
+                            // ),
+                            // Padding(
+                            //   padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*12),
+                            //   child:Text(" MEME FACTORY ",
+                            //     style: TextStyle(
+                            //       fontSize: 20,
+                            //       fontFamily: 'Bebas Neue',
+                            //       fontWeight: FontWeight.bold,
+                            //       color: Colors.pinkAccent.shade700,
+                            //     ),
+                            //   )
+                            // ),
+                          //],
+                        //),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
@@ -365,39 +386,30 @@ class _HomeState extends State<HomeScreen> {
   }
   
   Widget _memeTextUp(){
-    return Stack(
-      children: <Widget>[
-        Center(
-          child: Text(_controllerUp.text,
-            style: TextStyle(
-              fontFamily: 'Bebas Neue',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.white
+    return Container(
+      alignment: Alignment.topCenter,
+            child: Text(_controllerUp.text,
+              style: TextStyle(
+                fontFamily: 'Bebas Neue',
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black
+              ),
             ),
-          ),
-        )
-      ],
     );
   }
 
   Widget _memeTextDown(){
-    return Stack(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*71.5),
-          child:Center(
+    return Container(
+      alignment: Alignment.bottomCenter,
             child: Text(_controllerDown.text,
               style: TextStyle(
                 fontFamily: 'Bebas Neue',
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.white
+                color: Colors.black
               ),
             ),
-          )
-        ),
-      ],
     );
   }
 

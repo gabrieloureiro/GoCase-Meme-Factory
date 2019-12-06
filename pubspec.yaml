@@ -66,6 +66,10 @@ flutter:
       fonts:
         - asset: fonts/BebasNeue.otf
           weight: 700
+
+    - family: BRUSHSCI
+      fonts:
+        - asset: fonts/BRUSHSCI.ttf
   #         style: italic
     # - family: Trajan Pro
     #   fonts:
