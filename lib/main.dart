@@ -32,6 +32,7 @@ _launchURL(String url) async {
   }
 }
 
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -43,6 +44,12 @@ class _HomeState extends State<HomeScreen> {
   TextEditingController _controllerUp = TextEditingController();
   TextEditingController _controllerDown = TextEditingController();
   File _image;
+  bool _color = false;
+  bool black = false;
+  GlobalKey _key = GlobalKey();
+  double _w;
+  double _h;
+
 
 
   Future _getImage(bool ofCamera) async {
@@ -64,7 +71,120 @@ class _HomeState extends State<HomeScreen> {
 
   }
 
-  //WIDGETS
+  _getSizes() async {
+    final RenderBox renderBoxRed = _key.currentContext.findRenderObject();
+    final _height = renderBoxRed.size.height;
+    final _width = renderBoxRed.size.width;
+    print("SIZE: $_width"); 
+    print("SIZE: $_height");
+
+    setState(() {
+      _w = _width;
+      _h = _height;
+    });   
+ }
+
+ 
+  
+
+//WIDGETS
+
+Widget _card() {
+  return Card(
+    margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+    elevation: 5,
+    child: Container(
+      key: _key,                               
+      alignment: Alignment.center,
+      child: Image.file(_image,),
+    ),
+  );
+  // setState(() {
+  //   _getSizes();
+  // });
+}
+
+Widget _posUp(){
+  return Padding(
+    padding: EdgeInsets.only(left:18,right:18),
+    child:_memeTextUp(),
+  );                              
+}
+
+Widget _posDown(){
+  return Padding(
+    padding: EdgeInsets.only(left:18,right:18,top:_h-48),
+    child:_memeTextDown(),
+  );
+}
+
+Widget _memeTextUp(){
+  return Stack(
+    alignment: Alignment.topCenter,
+    children: <Widget>[
+      _changeColorU()
+    ]
+  );
+}
+
+Widget _memeTextDown(){
+  return Stack(
+    alignment: Alignment.bottomCenter,
+    children: <Widget>[
+      _changeColorD()
+    ]
+  );
+}
+
+_changeColorU() {
+    if(_color == true){
+      return Text(_controllerUp.text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Bebas Neue',
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.black
+        ),
+      );
+    }
+    else {
+      return Text(_controllerUp.text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Bebas Neue',
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white
+        ),
+      );
+    }
+  }
+
+_changeColorD() {
+    if(_color == true){
+      return Text(_controllerDown.text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Bebas Neue',
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.black
+        ),
+      );
+    }
+    else {
+      return Text(_controllerDown.text,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Bebas Neue',
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white
+        ),
+      );
+    }
+  }  
 
   Widget _coreApp(){
     return Scaffold(
@@ -169,6 +289,9 @@ class _HomeState extends State<HomeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical*1.5,
+                  ),
                   _image == null
                     ? Padding(
                         padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*30),
@@ -182,51 +305,17 @@ class _HomeState extends State<HomeScreen> {
                           ),
                         )
                       )
-                      : Stack(
+                      :Stack(
                         alignment: Alignment.topCenter,
-                          children: <Widget>[ 
-                            Card(
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: <Widget>[
-                                  _memeTextDown(),
-                                  Image.file(_image,),
-                                  _memeTextUp(),
-                                ],
-                              ),
-                            ),
+                          children: <Widget>[
+                            _card(),
+                            _posUp(),
+                            _posDown(),
                           ],
                         ),
-                            // Padding(
-                            //   padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*1),
-                            //   child:Text(" ROLL DOWN TO CREATE A MEME ",
-                            //     style: TextStyle(
-                            //       fontSize: 20,
-                            //       fontFamily: 'Bebas Neue',
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.black87.withOpacity(0.6),
-                            //     ),
-                            //   )
-                            // ),
-                            // Padding(
-                            //   padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*7),
-                            //   child:Image.asset("images/logogc.png",
-                            //     color: Colors.pinkAccent.shade700,
-                            //   )                        
-                            // ),
-                            // Padding(
-                            //   padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*12),
-                            //   child:Text(" MEME FACTORY ",
-                            //     style: TextStyle(
-                            //       fontSize: 20,
-                            //       fontFamily: 'Bebas Neue',
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.pinkAccent.shade700,
-                            //     ),
-                            //   )
-                            // ),
-                          //],
-                        //),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical*1.5,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
@@ -288,6 +377,7 @@ class _HomeState extends State<HomeScreen> {
                         autofocus: false,
                         keyboardType: TextInputType.text,
                         style: TextStyle(fontSize: SizeConfig.blockSizeHorizontal*3.3),
+                        maxLength: 103,
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.fromLTRB(25, 16, 32, 16),
                             hintText: "Enter the up text here",
@@ -295,7 +385,7 @@ class _HomeState extends State<HomeScreen> {
                             fillColor: Colors.white,
                             border:OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20)
-                            ),                                                                                      
+                            ),
                             suffixIcon: const Icon(
                               Icons.text_fields,
                               color: Color(0xffef89bf),
@@ -309,6 +399,7 @@ class _HomeState extends State<HomeScreen> {
                         controller: _controllerDown,
                         autofocus: false,
                         keyboardType: TextInputType.text,
+                        maxLength: 68,
                         style: TextStyle(fontSize: SizeConfig.blockSizeHorizontal*3.3),
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.fromLTRB(25, 16, 32, 16),
@@ -317,7 +408,7 @@ class _HomeState extends State<HomeScreen> {
                             fillColor: Colors.white,
                             border:OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20)
-                            ),                                                                                      
+                            ),
                             suffixIcon: const Icon(
                               Icons.text_fields,
                               color: Color(0xffef89bf),
@@ -327,23 +418,26 @@ class _HomeState extends State<HomeScreen> {
                       SizedBox(
                         height: SizeConfig.blockSizeVertical*1.5,
                       ),
-                      Row(                       
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,                                             
                         children: <Widget>[ 
                           RaisedButton(
                             color: Colors.black54,
                             textColor: Colors.white,
                             splashColor: Colors.pinkAccent,
                             hoverColor: Colors.pinkAccent,
-                            child: Text("Download",
+                            child: Text("Refresh",
                               style: TextStyle(
                                 fontSize: 15,
                                 fontFamily: 'Bebas Neue',
                                 fontWeight: FontWeight.bold
                               ),
                             ),
-                            onPressed: () { 
-                              if((_controllerUp.text).length<=100 && (_controllerDown.text).length<=100){
+                            onPressed: () {  
+                              _getSizes();
+                              if((_controllerUp.text).length<=103 && (_controllerDown.text).length<=68){
+                                _posUp();
+                                _posDown();
                                 //_screenshot();
                               } else {
                                 showDialog(
@@ -351,7 +445,7 @@ class _HomeState extends State<HomeScreen> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       title: Text("Ops! You exceded the limit of characteres"),
-                                      content: Text("The limit of characteres are 100 in each Input Field. Please erase some letters."),
+                                      content: Text("The limit of characteres are 103 in at first Input Field and 68 at second Input Field. Please erase some letters."),
                                       titleTextStyle: TextStyle(
                                         color : Color(0xffef89bf),
                                         fontSize: 17,
@@ -375,42 +469,58 @@ class _HomeState extends State<HomeScreen> {
                               }
                             }
                           ),
+                          SizedBox(
+                            width: SizeConfig.blockSizeHorizontal*12.3
+                          ),
+                          Checkbox(
+                            value: _color,
+                            activeColor: Colors.pinkAccent.shade700,
+                            hoverColor: Colors.white,
+                            onChanged: (bool value){
+                             setState(() {
+                              _color = value;
+                              black = false;
+                              if(_color == false){
+                                black = true;
+                              }
+                              else {
+                                black = false;
+                              }
+                            });
+                            },
+                          ),
+                          Text("Black Font",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'Bebas Neue',
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
                         ]
-                      )           
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*7.5),
+                        child:Image.asset("images/logogc.png",
+                          color: Colors.pinkAccent.shade700,
+                        )                        
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*0),
+                        child:Text(" MEME FACTORY ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Bebas Neue',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.pinkAccent.shade700,
+                          ),
+                        )
+                      ),                                      
                     ],
-                  )
+                  ),
                 ]
               )
           )
         );          
-  }
-  
-  Widget _memeTextUp(){
-    return Container(
-      alignment: Alignment.topCenter,
-            child: Text(_controllerUp.text,
-              style: TextStyle(
-                fontFamily: 'Bebas Neue',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black
-              ),
-            ),
-    );
-  }
-
-  Widget _memeTextDown(){
-    return Container(
-      alignment: Alignment.bottomCenter,
-            child: Text(_controllerDown.text,
-              style: TextStyle(
-                fontFamily: 'Bebas Neue',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black
-              ),
-            ),
-    );
   }
 
 //BUILD APP
