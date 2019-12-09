@@ -31,7 +31,7 @@ Simply upload a image and write in the Input field's. If the words are bugging t
 ## Developer
 
 * E-mail: gabrieloureirof@gmail.com
-* LinkedIn:[Gabriel Loureiro](https://www.linkedin.com/in/gabrieloureiro/)
+* LinkedIn: [Gabriel Loureiro](https://www.linkedin.com/in/gabrieloureiro/)
 
 
 
