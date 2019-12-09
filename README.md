@@ -1,73 +1,45 @@
-# Nome do produto
-> Descrição curta sobre o que seu projeto faz.
+# GoCase Meme Factory
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+> A meme factory for GoCase admission challenge.
 
-De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
+A simple application in Flutter that works like a meme generator. You upload a image from your device(camera or storage) and add subtitles. You can change the color of font and, after refresh the changes, you can download the meme for you device storage.
 
 ![](../header.png)
 
-## Instalação
-
-OS X & Linux:
-
-```sh
-npm install my-crazy-module --save
-```
-
-Windows:
+## Installation
+Follow the steps below to install Flutter framework in your pc:
 
 ```sh
-edit autoexec.bat
+(https://flutter.dev/docs/get-started/install)
+```
+## Tip:
+
+You can use the Android Studio, but i guess that the Visual Studio Code is better. You still need the Android Studio to use the SDK. After install Android Studio, you can use the AVD Manager to emulate the android device and after this you can debug the code using Visual Studio Code.
+
+```sh
+Press F5 in Visual Studio Code to Debug
+npm test
+```
+or run in Terminal:
+```sh
+flutter run
+npm test
 ```
 
-## Exemplo de uso
+## Examples of Meme's:
 
 Alguns exemplos interessantes e úteis sobre como seu projeto pode ser utilizado. Adicione blocos de códigos e, se necessário, screenshots.
 
 _Para mais exemplos, consulte a [Wiki][wiki]._ 
 
-## Configuração para Desenvolvimento
+## Developer
 
-Descreva como instalar todas as dependências para desenvolvimento e como rodar um test-suite automatizado de algum tipo. Se necessário, faça isso para múltiplas plataformas.
+E-mail: gabrieloureirof@gmail.com
 
-```sh
-make install
-npm test
-```
 
-## Histórico de lançamentos
+[https://github.com/gabrieloureiro](https://github.com/gabrieloureiro/)
 
-* 0.2.1
-    * MUDANÇA: Atualização de docs (código do módulo permanece inalterado)
-* 0.2.0
-    * MUDANÇA: Remove `setDefaultXYZ()`
-    * ADD: Adiciona `init()`
-* 0.1.1
-    * CONSERTADO: Crash quando chama `baz()` (Obrigado @NomeDoContribuidorGeneroso!)
-* 0.1.0
-    * O primeiro lançamento adequado
-    * MUDANÇA: Renomeia `foo()` para `bar()`
-* 0.0.1
-    * Trabalho em andamento
 
-## Meta
-
-Seu Nome – [@SeuNome](https://twitter.com/...) – SeuEmail@exemplo.com
-
-Distribuído sob a licença XYZ. Veja `LICENSE` para mais informações.
-
-[https://github.com/yourname/github-link](https://github.com/othonalberto/)
-
-## Contributing
-
-1. Faça o _fork_ do projeto (<https://github.com/yourname/yourproject/fork>)
-2. Crie uma _branch_ para sua modificação (`git checkout -b feature/fooBar`)
-3. Faça o _commit_ (`git commit -am 'Add some fooBar'`)
-4. _Push_ (`git push origin feature/fooBar`)
-5. Crie um novo _Pull Request_
 
 [npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/datadog-metrics
