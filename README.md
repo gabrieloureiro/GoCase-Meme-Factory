@@ -9,7 +9,7 @@ A simple application in Flutter that works like a meme generator. You upload a i
 ## Installation
 Follow the steps below to install Flutter framework in your pc:
 
-[https://flutter.dev/docs/get-started/install](https://github.com/gabrieloureiro/)
+> [Getting-Started-with-Flutter][Getting-Started-with-Flutter]
 
 ## Tip:
 
@@ -42,6 +42,6 @@ E-mail: gabrieloureirof@gmail.com
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [wiki]: https://github.com/seunome/seuprojeto/wiki
 
-
+[Getting-Started-with-Flutter]: https://flutter.dev/docs/get-started/install
 
 
