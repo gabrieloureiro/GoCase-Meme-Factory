@@ -9,21 +9,15 @@ A simple application in Flutter that works like a meme generator. You upload a i
 ## Installation
 Follow the steps below to install Flutter framework in your pc:
 
-```sh
-(https://flutter.dev/docs/get-started/install)
-```
+[https://flutter.dev/docs/get-started/install](https://github.com/gabrieloureiro/)
+
 ## Tip:
 
 You can use the Android Studio, but i guess that the Visual Studio Code is better. You still need the Android Studio to use the SDK. After install Android Studio, you can use the AVD Manager to emulate the android device and after this you can debug the code using Visual Studio Code.
 
-```sh
-Press F5 in Visual Studio Code to Debug
-npm test
-```
-or run in Terminal:
+Press F5 in Visual Studio Code to Debug or run the command in Terminal:
 ```sh
 flutter run
-npm test
 ```
 
 ## Examples of Meme's:
