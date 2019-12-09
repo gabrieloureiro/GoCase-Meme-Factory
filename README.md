@@ -24,27 +24,17 @@ Press F5 in Visual Studio Code to Debug or run the command in Terminal:
 flutter run
 ```
 
-## Examples of Meme's:
+## How to use:
 
-Alguns exemplos interessantes e úteis sobre como seu projeto pode ser utilizado. Adicione blocos de códigos e, se necessário, screenshots.
-
-_Para mais exemplos, consulte a [Wiki][wiki]._ 
+Simply upload a image and write in the Input field's. If the words are bugging the screen for some cause, click on button "Refresh". After create your meme, roll down the screen and click at "Download" Button. Your meme is already saved in your storage device.
 
 ## Developer
 
 E-mail: gabrieloureirof@gmail.com
-
-
-[https://github.com/gabrieloureiro](GitHub)
+* [Gabriel Loureiro - LinkedIn](https://www.linkedin.com/in/gabrieloureiro/)
 
 
 
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/seunome/seuprojeto/wiki
 
 [Getting-Started-with-Flutter]: https://flutter.dev/docs/get-started/install
 [Link-of-Challenge]: https://gist.github.com/brunocavalcante/56a15941215be8f6b70b3b7e885e9a8f
