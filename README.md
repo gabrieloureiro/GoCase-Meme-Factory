@@ -31,7 +31,7 @@ _Para mais exemplos, consulte a [Wiki][wiki]._
 E-mail: gabrieloureirof@gmail.com
 
 
-[https://github.com/gabrieloureiro](https://github.com/gabrieloureiro/)
+[https://github.com/gabrieloureiro](GitHub)
 
 
 
@@ -41,3 +41,7 @@ E-mail: gabrieloureirof@gmail.com
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [wiki]: https://github.com/seunome/seuprojeto/wiki
+
+
+
+
