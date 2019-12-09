@@ -42,7 +42,9 @@ Simply upload a image and write in the Input field's. If the words are bugging t
 
 * E-mail: gabrieloureirof@gmail.com
 * LinkedIn: [Gabriel Loureiro](https://www.linkedin.com/in/gabrieloureiro/)
+* WhatsApp: [Gabriel Loureiro](https://api.whatsapp.com/send?phone=5585999134041&text=Olá,%20gostei%20do%20seu%20GitHub.)
 
+> If you have questions or doubts, contact me. ;)
 
 [Getting-Started-with-Flutter]: https://flutter.dev/docs/get-started/install
 [Link-of-Challenge]: https://gist.github.com/brunocavalcante/56a15941215be8f6b70b3b7e885e9a8f
