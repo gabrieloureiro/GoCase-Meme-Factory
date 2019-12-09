@@ -8,7 +8,12 @@ A simple application in Flutter that works like a meme generator. You upload a i
 
 ## Screen Image's:
 ![gc1](https://user-images.githubusercontent.com/39869298/70459557-2a468200-1a93-11ea-8a5f-6d9d3afa4522.png)
-
+![gc2](https://user-images.githubusercontent.com/39869298/70459886-e4d68480-1a93-11ea-9bb6-918dd29c3be5.png)
+![gc3](https://user-images.githubusercontent.com/39869298/70459881-e43dee00-1a93-11ea-9a93-e8ae55a528bf.png)
+![gc4](https://user-images.githubusercontent.com/39869298/70459882-e43dee00-1a93-11ea-920f-acce87541b1e.png)
+![gc5](https://user-images.githubusercontent.com/39869298/70459883-e4d68480-1a93-11ea-8299-dbeb6cb06c49.png)
+![gc6](https://user-images.githubusercontent.com/39869298/70459884-e4d68480-1a93-11ea-9963-fd9539b9ee7e.png)
+![gc7](https://user-images.githubusercontent.com/39869298/70459885-e4d68480-1a93-11ea-9dc1-a37589425c31.png)
 
 ## Installation
 Follow the steps below to install Flutter framework in your pc:
