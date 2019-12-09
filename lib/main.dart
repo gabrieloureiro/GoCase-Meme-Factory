@@ -1,12 +1,17 @@
+import 'dart:typed_data';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:gcm_factory/size_config.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
+import 'package:screenshot/screenshot.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
+import 'package:permission_handler/permission_handler.dart';
+import 'dart:ui' as ui;
 
 void main() => runApp(Home());
 
@@ -43,11 +48,13 @@ class _HomeState extends State<HomeScreen> {
 
   TextEditingController _controllerUp = TextEditingController();
   TextEditingController _controllerDown = TextEditingController();
+  ScreenshotController screenshotController = ScreenshotController(); 
   File _image;
   bool _color = false;
   bool black = false;
   GlobalKey _key = GlobalKey();
-  double _w;
+  GlobalKey screenshotKey = GlobalKey();
+  //double _w;
   double _h;
 
 
@@ -71,25 +78,42 @@ class _HomeState extends State<HomeScreen> {
 
   }
 
-  _getSizes() async {
+  Future _getSizes() async {
     final RenderBox renderBoxRed = _key.currentContext.findRenderObject();
     final _height = renderBoxRed.size.height;
     final _width = renderBoxRed.size.width;
-    print("SIZE: $_width"); 
-    print("SIZE: $_height");
+    print("Width: $_width"); 
+    print("Height: $_height");
 
     setState(() {
-      _w = _width;
+    //  _w = _width;
       _h = _height;
     });   
  }
-
  
-  
+  _screenshot() async{
+
+    RenderRepaintBoundary boundary =
+    screenshotKey.currentContext.findRenderObject();
+    ui.Image image = await boundary.toImage();
+    ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    final result = await ImageGallerySaver.saveImage(byteData.buffer.asUint8List());
+    print(result);
+  }
+
+
+ @override
+  void initState() {
+    super.initState();
+    PermissionHandler().requestPermissions(<PermissionGroup>[
+      PermissionGroup.storage,
+    ]);
+  }
 
 //WIDGETS
 
 Widget _card() {
+  _getSizes();
   return Card(
     margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
     elevation: 5,
@@ -99,10 +123,8 @@ Widget _card() {
       child: Image.file(_image,),
     ),
   );
-  // setState(() {
-  //   _getSizes();
-  // });
 }
+
 
 Widget _posUp(){
   return Padding(
@@ -112,10 +134,18 @@ Widget _posUp(){
 }
 
 Widget _posDown(){
-  return Padding(
-    padding: EdgeInsets.only(left:18,right:18,top:_h-48),
-    child:_memeTextDown(),
-  );
+  if(_h == null){
+    return Padding(
+      padding: EdgeInsets.only(left:18,right:18,top:60),
+      child:_memeTextDown(),
+    );
+  } 
+  else {
+    return Padding(
+      padding: EdgeInsets.only(left:18,right:18, top:_h-48),
+      child:_memeTextDown(),
+    );
+  }
 }
 
 Widget _memeTextUp(){
@@ -305,14 +335,17 @@ _changeColorD() {
                           ),
                         )
                       )
-                      :Stack(
-                        alignment: Alignment.topCenter,
-                          children: <Widget>[
-                            _card(),
-                            _posUp(),
-                            _posDown(),
-                          ],
-                        ),
+                      :RepaintBoundary(
+                        key: screenshotKey,
+                        child: Stack(
+                          alignment: Alignment.topCenter,
+                            children: <Widget>[
+                              _card(),
+                              _posUp(),
+                              _posDown(),
+                            ],
+                          ),
+                      ),
                   SizedBox(
                     height: SizeConfig.blockSizeVertical*1.5,
                   ),
@@ -331,7 +364,9 @@ _changeColorD() {
                             fontWeight: FontWeight.bold
                           ),
                         ),
-                        onPressed: () => _getImage(false),
+                        onPressed: () { 
+                          _getImage(false);
+                        },
                       ),
                       RaisedButton(
                         color: Colors.black54,
@@ -345,7 +380,9 @@ _changeColorD() {
                             fontWeight: FontWeight.bold
                           ),
                         ),
-                        onPressed: () => _getImage(true),
+                        onPressed: () { 
+                          _getImage(true);
+                        },
                       ),
                     ],
                   ),
@@ -436,9 +473,9 @@ _changeColorD() {
                             onPressed: () {  
                               _getSizes();
                               if((_controllerUp.text).length<=103 && (_controllerDown.text).length<=68){
+                                //REFRESHING THE POSITION ON CHANGING IMAGE
                                 _posUp();
                                 _posDown();
-                                //_screenshot();
                               } else {
                                 showDialog(
                                   context: context,
@@ -499,13 +536,13 @@ _changeColorD() {
                         ]
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*7.5),
+                        padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*2.5),
                         child:Image.asset("images/logogc.png",
                           color: Colors.pinkAccent.shade700,
                         )                        
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top:SizeConfig.blockSizeVertical*0),
+                        padding: EdgeInsets.only(bottom:SizeConfig.blockSizeVertical),
                         child:Text(" MEME FACTORY ",
                           style: TextStyle(
                             fontSize: 20,
@@ -514,6 +551,22 @@ _changeColorD() {
                             color: Colors.pinkAccent.shade700,
                           ),
                         )
+                      ),
+                      RaisedButton(
+                        color: Colors.black54,
+                        textColor: Colors.white,
+                        splashColor: Colors.pinkAccent,
+                        hoverColor: Colors.pinkAccent,
+                        child: Text("Download",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontFamily: 'Bebas Neue',
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        onPressed: (){
+                          _screenshot();
+                        }
                       ),                                      
                     ],
                   ),
