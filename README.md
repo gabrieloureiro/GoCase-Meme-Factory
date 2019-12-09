@@ -15,6 +15,10 @@ Follow the steps below to install Flutter framework in your pc:
 
 You can use the Android Studio, but i guess that the Visual Studio Code is better. You still need the Android Studio to use the SDK. After install Android Studio, you can use the AVD Manager to emulate the android device and after this you can debug the code using Visual Studio Code.
 
+## After install:
+
+Download the repository and extract the zip file. Open your Visual Studio Code and go to the Terminal. Go to the root folder of the program and then:
+
 Press F5 in Visual Studio Code to Debug or run the command in Terminal:
 ```sh
 flutter run
